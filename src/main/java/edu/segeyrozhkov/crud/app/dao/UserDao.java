@@ -9,16 +9,15 @@ import java.util.List;
 
 public interface UserDao {
 
+     void addUser(User user);
 
-    public void addUser(User user);
+     void updateUser(User user);
 
-    public void updateUser(User user);
+     void removeUser(int id);
 
-    public void removeUser(int id);
+     User getUserById(int id);
 
-    public User getUserById(int id);
-
-    public List<User> userList();
+     List<User> userList();
 
 
 }
