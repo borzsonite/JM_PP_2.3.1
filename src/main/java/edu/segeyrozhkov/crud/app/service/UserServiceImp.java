@@ -1,8 +1,15 @@
 package edu.segeyrozhkov.crud.app.service;
 
 import edu.segeyrozhkov.crud.app.dao.UserDao;
+import edu.segeyrozhkov.crud.app.model.Role;
 import edu.segeyrozhkov.crud.app.model.User;
+import edu.segeyrozhkov.crud.app.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -11,9 +18,15 @@ import java.util.List;
 @Service
 public class UserServiceImp implements UserService {
 
-    @Autowired
     private UserDao userDao;
 
+    @Autowired
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
+    }
+
+
+    //CRUD part
     @Override
     @Transactional
     public void updateUser(User user) {
@@ -37,5 +50,6 @@ public class UserServiceImp implements UserService {
     public List<User> userList() {
         return userDao.userList();
     }
+
 }
 
