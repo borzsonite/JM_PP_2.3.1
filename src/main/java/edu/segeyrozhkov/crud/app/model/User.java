@@ -1,54 +1,82 @@
 package edu.segeyrozhkov.crud.app.model;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    private int id;
+    @Column(name = "id")
+    private Long id;
 
-    @Column(name = "user_name")
-    private String name;
+    @Column(name = "username")
+    private String username;
 
-    @Column(name = "user_department")
-    private String department;
+    @Column(name = "password")
+    private String password;
 
-    @Column(name = "user_salary")
-    private double salary;
+    @ManyToMany
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 
-    public int getId() {
+    public User() {
+    }
+
+    public User(Long id, String username, String password) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roles;
     }
 
-    public String getName() {
-        return name;
+    @Override
+    public String getPassword() {
+        return password;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    @Override
+    public String getUsername() {
+        return username;
     }
 
-    public String getDepartment() {
-        return department;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setDepartment(String department) {
-        this.department = department;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public double getSalary() {
-        return salary;
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
     }
 
-    public void setSalary(double salary) {
-        this.salary = salary;
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }
