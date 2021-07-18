@@ -6,6 +6,9 @@
     <title>User's page</title>
 </head>
 <body>
-<p th:text="This is + ${name}">This is user's page!</p>
+
+<h3 th:text=  "'This is ' + ${name} + ' page!'">This is user's page!</h3>
+<a href="logout.html" th:href="@{/logout}"><input type="submit" value="Logout"></a>
+
 </body>
 </html>

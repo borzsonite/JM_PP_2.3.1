@@ -1,10 +1,14 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Admin's page</title>
 </head>
 <body>
-<p>This is admin page!</p>
+<h3 th:text="'This is ' + ${name} + ' page'">This is admin page!</h3>
+
+<a href="logout.html" th:href="@{/logout}"><input type="submit" value="Logout"></a>
+
 </body>
 </html>

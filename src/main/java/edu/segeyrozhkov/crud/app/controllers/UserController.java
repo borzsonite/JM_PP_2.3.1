@@ -26,14 +26,15 @@ public class UserController {
 	}
 
 	@GetMapping("admin")
-	public String adminPage(Principal principal) {
-		return "admin" + principal.getName();
+	public String adminPage(Principal principal, Model model) {
+		model.addAttribute("name", principal.getName());
+		return "admin";
 	}
 
 	@GetMapping("user")
 	public String userPage(Principal principal, Model model) {
 		model.addAttribute("name", principal.getName());
-		return "user"  ;
+		return "user";
 	}
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
