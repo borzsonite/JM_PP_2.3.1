@@ -68,17 +68,16 @@
 <table class="tg">
     <tr>
         <th width="30">ID</th>
-        <th width="120">Name</th>
-        <th width="120">Department</th>
-        <th width="120">Salary</th>
+        <th width="120">Username</th>
+        <th width="120">Email</th>
         <th width="60">Edit</th>
         <th width="60">Delete</th>
     </tr>
     <tr th:if="not ${userList.isEmpty()}" th:each="user: ${userList}">
         <td align="center" th:text="${user.getId()}"></td>
-        <td align="center" th:text="${user.getName()}"></td>
-        <td align="center" th:text="${user.getDepartment()}"></td>
-        <td align="center" th:text="${user.getSalary()}"></td>
+        <td align="center" th:text="${user.getUsername()}"></td>
+        <td align="center" th:text="${user.getEmail()}"></td>
+<!--        <td align="center" th:text="${user.getSalary()}"></td>-->
         <td align="center"><a href="edit_user.html" th:href="@{/edit/{id}(id=${user.getId()})}">Edit</a></td>
         <td align="center"><a href="remove_user.html" th:href="@{/remove/{id}(id=${user.getId()})}">Remove</a></td>
     </tr>
@@ -90,18 +89,18 @@
 <form th:method="POST" th:action="@{/user/{id}(id=${user.getId()})}" th:object="${user}">
     <ul class="wrapper">
         <li class="form-row">
-            <label for="name">Name</label>
-            <input type="text" th:field="*{username}" id="name"/>
+            <label for="username">Name</label>
+            <input type="text" th:field="*{username}" id="username"/>
         </li>
         <br>
         <li class="form-row">
-            <label for="department">Department</label>
-            <input type="text" th:field="*{}" id="department"/>
+            <label for="password">Password</label>
+            <input type="text" th:field="*{password}" id="password"/>
         </li>
         <br>
         <li class="form-row">
-            <label for="salary">Salary</label>
-            <input type="text" th:field="*{salary}" id="salary"/>
+            <label for="email">Email</label>
+            <input type="text" th:field="*{email}" id="email"/>
         </li>
         <br>
         <input type="submit" value="Submit">

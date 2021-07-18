@@ -30,13 +30,13 @@ public class UserJpaController {
     }
 
     @GetMapping("/remove/{id}")
-    String removeUser(@PathVariable("id") int id) {
+    String removeUser(@PathVariable("id") Long id) {
         userService.removeUser(id);
         return "redirect:/users";
     }
 
     @GetMapping("/edit/{id}")
-    String editUser(@PathVariable("id") int id, Model model) {
+    String editUser(@PathVariable("id") Long id, Model model) {
         model.addAttribute("user", userService.getUserById(id));
         model.addAttribute("userList", userService.userList());
         model.addAttribute("title", "Edit user");
@@ -44,7 +44,7 @@ public class UserJpaController {
     }
 
     @PostMapping("/user/{id}")
-    public String update(@ModelAttribute("user") User user, @PathVariable("id") int id) {
+    public String update(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
         userService.updateUser(user);
         return "redirect:/users";
     }
