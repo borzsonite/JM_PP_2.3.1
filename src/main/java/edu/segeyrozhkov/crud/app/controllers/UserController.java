@@ -11,8 +11,8 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
-@RequestMapping("/")
+//@Controller
+@RequestMapping("/welcome")
 public class UserController {
 
 	@RequestMapping(value = "hello", method = RequestMethod.GET)
