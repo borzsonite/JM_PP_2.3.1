@@ -44,7 +44,7 @@ public class UserJpaController {
         return "/users";
     }
 
-    @PostMapping("/user/{id}")
+    @PostMapping("user/{id}")
     public String update(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
         userService.updateUser(user);
         return "redirect:/users";

@@ -11,7 +11,7 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Controller
+@Controller
 @RequestMapping("/welcome")
 public class UserController {
 
@@ -25,19 +25,19 @@ public class UserController {
 		return "hello";
 	}
 
-	@GetMapping("admin")
+	@GetMapping("/admin")
 	public String adminPage(Principal principal, Model model) {
 		model.addAttribute("name", principal.getName());
 		return "admin";
 	}
 
-	@GetMapping("user")
+	@GetMapping("/user")
 	public String userPage(Principal principal, Model model) {
 		model.addAttribute("name", principal.getName());
 		return "user";
 	}
 
-    @RequestMapping(value = "login", method = RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginPage() {
         return "login";
     }
