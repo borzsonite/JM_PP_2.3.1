@@ -19,12 +19,12 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public void removeUser(int id) {
+    public void removeUser(long id) {
         repository.deleteById(id);
     }
 
     @Override
-    public User getUserById(int id) {
+    public User getUserById(long id) {
         Optional<User> user = repository.findById(id);
         return user.orElse(null);
     }
